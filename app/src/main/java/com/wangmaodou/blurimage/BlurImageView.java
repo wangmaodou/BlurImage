@@ -102,6 +102,7 @@ public class BlurImageView extends View {
                     bitmap.getWidth(),bitmap.getHeight(),false);
             mBitmap = Bitmap.createScaledBitmap(getBlurBitmap(bitmap,15f),
                     bitmap.getWidth(),bitmap.getHeight(),false);
+            //mBitmap=bitmap;
             invalidate();
         }
     }
@@ -113,7 +114,8 @@ public class BlurImageView extends View {
      */
     public void setBlurRadius(int radius){
         if(radius<=100&&radius>=0) {
-            int v = 255-(int)(radius*2.55f);
+            float f=1-radius/100f;
+            int v =(int) (f*255);
             mPaint.setAlpha(v);
             invalidate();
         }
